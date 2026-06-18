@@ -1,0 +1,40 @@
+{
+  "Navigation": {
+    "home": "Home",
+    "shop": "Shop",
+    "cart": "Cart",
+    "account": "My Account",
+    "login": "Login"
+  },
+  "Hero": {
+    "title": "Welcome to OTO STORE",
+    "subtitle": "Automobile accessories sales",
+    "cta": "Discover"
+  },
+  "Common": {
+    "search": "Search...",
+    "addToCart": "Add to cart",
+    "buyNow": "Buy now",
+    "outOfStock": "Out of stock",
+    "price": "Price",
+    "total": "Total",
+    "currency": "TND"
+  },
+  "Cart": {
+    "title": "Your Cart",
+    "empty": "Your cart is empty.",
+    "checkout": "Checkout"
+  },
+  "Checkout": {
+    "title": "Cash on Delivery",
+    "fullName": "Full Name",
+    "phone": "Phone Number",
+    "email": "Email",
+    "governorate": "Governorate",
+    "city": "City",
+    "address": "Full Address",
+    "postalCode": "Postal Code",
+    "notes": "Delivery Notes",
+    "placeOrder": "Place Order"
+  }
+}
