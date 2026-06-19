@@ -2,6 +2,7 @@ import { NextRequest, NextResponse } from 'next/server';
 import { auth } from '@/lib/auth';
 import prisma from '@/lib/prisma';
 import { sendEmail } from '@/lib/email';
+import { revalidatePath } from 'next/cache';
 
 export async function PATCH(req: NextRequest, { params }: { params: Promise<{ id: string }> }) {
   const session = await auth();
@@ -47,6 +48,9 @@ export async function PATCH(req: NextRequest, { params }: { params: Promise<{ id
          <p>Merci pour votre confiance !<br/>L'équipe OTO STORE</p>`
       );
     }
+
+    // Bust cache to ensure the updated status appears instantly on the client UI
+    revalidatePath('/', 'layout');
 
     return NextResponse.json(order);
   } catch (error) {

@@ -2,6 +2,7 @@ import { NextRequest, NextResponse } from 'next/server';
 import { auth } from '@/lib/auth';
 import prisma from '@/lib/prisma';
 import { sendEmail } from '@/lib/email';
+import { revalidatePath } from 'next/cache';
 
 export async function POST(req: NextRequest) {
   const session = await auth();
@@ -70,6 +71,9 @@ export async function POST(req: NextRequest) {
          <p>Merci pour votre confiance !<br/>L'équipe OTO STORE</p>`
       );
     }
+
+    // Bust cache to ensure the new order immediately appears in history
+    revalidatePath('/', 'layout');
 
     return NextResponse.json({ orderNumber: order.orderNumber, orderId: order.id }, { status: 201 });
   } catch (error) {
