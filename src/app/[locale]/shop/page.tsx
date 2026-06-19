@@ -2,6 +2,7 @@ import Image from 'next/image';
 import { Link } from '@/i18n/routing';
 import { formatPrice } from '@/lib/utils';
 import { Button } from '@/components/ui/Button';
+import QuickAddButton from '@/components/product/QuickAddButton';
 import prisma from '@/lib/prisma';
 import ShopFilters from '@/components/shop/ShopFilters';
 import ShopSort from '@/components/shop/ShopSort';
@@ -144,9 +145,14 @@ export default async function ShopPage({
                           <span className="text-sm text-gray-400 dark:text-gray-500 line-through">{formatPrice(product.comparePrice)}</span>
                         )}
                       </div>
-                      <Button className="w-full font-bold">
-                        Ajouter au panier
-                      </Button>
+                      <QuickAddButton product={{
+                        id: product.id,
+                        slug: product.slug,
+                        name: (product.name as any)?.fr || 'Produit',
+                        price: product.price,
+                        image: product.images?.[0] || '/logo.png',
+                        stock: product.stock,
+                      }} />
                     </div>
                   </div>
                 </div>
