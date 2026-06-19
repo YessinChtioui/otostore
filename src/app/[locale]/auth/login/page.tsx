@@ -6,6 +6,7 @@ import { useTranslations } from 'next-intl';
 import { Link, useRouter } from '@/i18n/routing';
 import { Button } from '@/components/ui/Button';
 import { Input } from '@/components/ui/Input';
+import { Eye, EyeOff } from 'lucide-react';
 
 export default function LoginPage() {
   const t = useTranslations('Navigation');
@@ -13,6 +14,7 @@ export default function LoginPage() {
   const [formData, setFormData] = useState({ email: '', password: '' });
   const [error, setError] = useState('');
   const [loading, setLoading] = useState(false);
+  const [showPassword, setShowPassword] = useState(false);
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -77,14 +79,23 @@ export default function LoginPage() {
                   Oublié ?
                 </Link>
               </div>
-              <Input 
-                name="password" 
-                type="password" 
-                required 
-                value={formData.password} 
-                onChange={handleChange} 
-              />
-            </div>
+              <div className="relative">
+                <Input 
+                  name="password" 
+                  type={showPassword ? "text" : "password"}
+                  required 
+                  value={formData.password} 
+                  onChange={handleChange}
+                  className="pr-10"
+                />
+                <button
+                  type="button"
+                  className="absolute right-3 top-1/2 -translate-y-1/2 text-gray-400 hover:text-gray-600 dark:hover:text-gray-300"
+                  onClick={() => setShowPassword(!showPassword)}
+                >
+                  {showPassword ? <EyeOff size={20} /> : <Eye size={20} />}
+                </button>
+              </div>
 
             <Button type="submit" className="w-full mt-2 h-12 text-lg shadow-md" disabled={loading}>
               {loading ? 'Connexion...' : 'Se connecter'}
