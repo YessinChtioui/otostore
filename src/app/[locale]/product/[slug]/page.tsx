@@ -5,6 +5,7 @@ import prisma from '@/lib/prisma';
 import { formatPrice } from '@/lib/utils';
 import { Truck, Shield, RefreshCw } from 'lucide-react';
 import ProductActions from '@/components/product/ProductActions';
+import ProductGallery from '@/components/product/ProductGallery';
 
 export default async function ProductPage({
   params,
@@ -76,27 +77,7 @@ export default async function ProductPage({
 
       <div className="grid grid-cols-1 md:grid-cols-2 gap-12 bg-white dark:bg-gray-900 p-6 md:p-10 rounded-2xl shadow-sm mb-12 border border-transparent dark:border-gray-800 transition-colors">
         {/* Product Images */}
-        <div className="space-y-4">
-          <div className="relative h-96 w-full rounded-xl overflow-hidden bg-gray-50 dark:bg-gray-800/50 border border-gray-100 dark:border-gray-800">
-            <Image
-              src={product.images[0] || '/logo.png'}
-              alt={name}
-              fill
-              className="object-contain p-4"
-              sizes="(max-width: 768px) 100vw, 50vw"
-              priority
-            />
-          </div>
-          {product.images.length > 1 && (
-            <div className="flex gap-4 overflow-x-auto pb-2">
-              {product.images.map((img: string, idx: number) => (
-                <div key={idx} className="relative h-24 w-24 flex-shrink-0 rounded-lg overflow-hidden border border-gray-200 dark:border-gray-700 cursor-pointer hover:border-[var(--color-brand-blue)] dark:hover:border-[var(--color-brand-blue)] transition-colors">
-                  <Image src={img} alt={`${name} - ${idx}`} fill className="object-cover" sizes="96px" />
-                </div>
-              ))}
-            </div>
-          )}
-        </div>
+        <ProductGallery images={product.images} name={name} />
 
         {/* Product Info */}
         <div className="flex flex-col">
