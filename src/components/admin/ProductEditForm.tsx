@@ -95,7 +95,7 @@ export default function ProductEditForm({ product, categories, locale }: Product
   return (
     <div className="container-custom py-12">
       <div className="flex items-center gap-4 mb-8">
-        <Link href={`/${locale}/admin/products`} className="p-2 hover:bg-gray-100 rounded-full transition-colors">
+        <Link href={`/${locale}/admin/products`} className="p-2 hover:bg-gray-100 dark:hover:bg-gray-800 rounded-full transition-colors">
           <ArrowLeft size={24} />
         </Link>
         <h1 className="text-3xl font-bold">Modifier le produit</h1>
@@ -115,61 +115,61 @@ export default function ProductEditForm({ product, categories, locale }: Product
         {/* Main info */}
         <div className="lg:col-span-2 space-y-6">
           {/* Names */}
-          <div className="bg-white rounded-xl shadow-sm border border-gray-100 p-6">
+          <div className="bg-white dark:bg-gray-900 rounded-xl shadow-sm border border-gray-100 dark:border-gray-800 p-6">
             <h2 className="text-lg font-bold mb-4">Nom du produit</h2>
             <div className="space-y-4">
               <div>
-                <label className="block text-sm font-medium text-gray-700 mb-1">Français</label>
+                <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">Français</label>
                 <input type="text" value={formData.nameFr}
                   onChange={(e) => setFormData({ ...formData, nameFr: e.target.value })}
-                  className="w-full border border-gray-300 rounded-lg px-4 py-2.5 focus:ring-2 focus:ring-[var(--color-brand-blue)] focus:border-transparent outline-none" />
+                  className="w-full border border-gray-300 dark:border-gray-700 bg-white dark:bg-gray-800 text-gray-900 dark:text-white rounded-lg px-4 py-2.5 focus:ring-2 focus:ring-[var(--color-brand-blue)] focus:border-transparent outline-none" />
               </div>
               <div>
-                <label className="block text-sm font-medium text-gray-700 mb-1">العربية</label>
+                <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">العربية</label>
                 <input type="text" value={formData.nameAr} dir="rtl"
                   onChange={(e) => setFormData({ ...formData, nameAr: e.target.value })}
-                  className="w-full border border-gray-300 rounded-lg px-4 py-2.5 focus:ring-2 focus:ring-[var(--color-brand-blue)] focus:border-transparent outline-none" />
+                  className="w-full border border-gray-300 dark:border-gray-700 bg-white dark:bg-gray-800 text-gray-900 dark:text-white rounded-lg px-4 py-2.5 focus:ring-2 focus:ring-[var(--color-brand-blue)] focus:border-transparent outline-none" />
               </div>
               <div>
-                <label className="block text-sm font-medium text-gray-700 mb-1">English</label>
+                <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">English</label>
                 <input type="text" value={formData.nameEn}
                   onChange={(e) => setFormData({ ...formData, nameEn: e.target.value })}
-                  className="w-full border border-gray-300 rounded-lg px-4 py-2.5 focus:ring-2 focus:ring-[var(--color-brand-blue)] focus:border-transparent outline-none" />
+                  className="w-full border border-gray-300 dark:border-gray-700 bg-white dark:bg-gray-800 text-gray-900 dark:text-white rounded-lg px-4 py-2.5 focus:ring-2 focus:ring-[var(--color-brand-blue)] focus:border-transparent outline-none" />
               </div>
             </div>
           </div>
 
           {/* Descriptions */}
-          <div className="bg-white rounded-xl shadow-sm border border-gray-100 p-6">
+          <div className="bg-white dark:bg-gray-900 rounded-xl shadow-sm border border-gray-100 dark:border-gray-800 p-6">
             <h2 className="text-lg font-bold mb-4">Description</h2>
             <div className="space-y-4">
               <div>
-                <label className="block text-sm font-medium text-gray-700 mb-1">Français</label>
+                <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">Français</label>
                 <textarea value={formData.descFr} rows={3}
                   onChange={(e) => setFormData({ ...formData, descFr: e.target.value })}
-                  className="w-full border border-gray-300 rounded-lg px-4 py-2.5 focus:ring-2 focus:ring-[var(--color-brand-blue)] focus:border-transparent outline-none resize-none" />
+                  className="w-full border border-gray-300 dark:border-gray-700 bg-white dark:bg-gray-800 text-gray-900 dark:text-white rounded-lg px-4 py-2.5 focus:ring-2 focus:ring-[var(--color-brand-blue)] focus:border-transparent outline-none resize-none" />
               </div>
               <div>
-                <label className="block text-sm font-medium text-gray-700 mb-1">العربية</label>
+                <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">العربية</label>
                 <textarea value={formData.descAr} rows={3} dir="rtl"
                   onChange={(e) => setFormData({ ...formData, descAr: e.target.value })}
-                  className="w-full border border-gray-300 rounded-lg px-4 py-2.5 focus:ring-2 focus:ring-[var(--color-brand-blue)] focus:border-transparent outline-none resize-none" />
+                  className="w-full border border-gray-300 dark:border-gray-700 bg-white dark:bg-gray-800 text-gray-900 dark:text-white rounded-lg px-4 py-2.5 focus:ring-2 focus:ring-[var(--color-brand-blue)] focus:border-transparent outline-none resize-none" />
               </div>
               <div>
-                <label className="block text-sm font-medium text-gray-700 mb-1">English</label>
+                <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">English</label>
                 <textarea value={formData.descEn} rows={3}
                   onChange={(e) => setFormData({ ...formData, descEn: e.target.value })}
-                  className="w-full border border-gray-300 rounded-lg px-4 py-2.5 focus:ring-2 focus:ring-[var(--color-brand-blue)] focus:border-transparent outline-none resize-none" />
+                  className="w-full border border-gray-300 dark:border-gray-700 bg-white dark:bg-gray-800 text-gray-900 dark:text-white rounded-lg px-4 py-2.5 focus:ring-2 focus:ring-[var(--color-brand-blue)] focus:border-transparent outline-none resize-none" />
               </div>
             </div>
           </div>
 
           {/* Images */}
-          <div className="bg-white rounded-xl shadow-sm border border-gray-100 p-6">
+          <div className="bg-white dark:bg-gray-900 rounded-xl shadow-sm border border-gray-100 dark:border-gray-800 p-6">
             <h2 className="text-lg font-bold mb-4">Images</h2>
             <div className="grid grid-cols-2 sm:grid-cols-3 gap-4 mb-4">
               {formData.images.map((url: string, i: number) => (
-                <div key={i} className="relative aspect-square bg-gray-100 rounded-lg overflow-hidden group border border-gray-200">
+                <div key={i} className="relative aspect-square bg-gray-100 dark:bg-gray-800 rounded-lg overflow-hidden group border border-gray-200 dark:border-gray-700">
                   <img src={url} alt={`Image ${i + 1}`} className="w-full h-full object-cover" />
                   <button onClick={() => removeImage(i)}
                     className="absolute top-2 right-2 w-7 h-7 bg-red-500 text-white rounded-full flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity">
@@ -178,7 +178,7 @@ export default function ProductEditForm({ product, categories, locale }: Product
                 </div>
               ))}
               {formData.images.length === 0 && (
-                <div className="aspect-square bg-gray-50 rounded-lg border-2 border-dashed border-gray-200 flex flex-col items-center justify-center text-gray-400">
+                <div className="aspect-square bg-gray-50 dark:bg-gray-800/50 rounded-lg border-2 border-dashed border-gray-200 dark:border-gray-700 flex flex-col items-center justify-center text-gray-400 dark:text-gray-500">
                   <ImageIcon size={24} className="mb-1" />
                   <span className="text-xs">Aucune image</span>
                 </div>
@@ -188,9 +188,9 @@ export default function ProductEditForm({ product, categories, locale }: Product
               <input type="text" value={newImageUrl} placeholder="URL de l'image..."
                 onChange={(e) => setNewImageUrl(e.target.value)}
                 onKeyDown={(e) => e.key === 'Enter' && addImage()}
-                className="flex-1 border border-gray-300 rounded-lg px-4 py-2 text-sm focus:ring-2 focus:ring-[var(--color-brand-blue)] focus:border-transparent outline-none" />
+                className="flex-1 border border-gray-300 dark:border-gray-700 bg-white dark:bg-gray-800 text-gray-900 dark:text-white rounded-lg px-4 py-2 text-sm focus:ring-2 focus:ring-[var(--color-brand-blue)] focus:border-transparent outline-none" />
               <button onClick={addImage}
-                className="px-4 py-2 bg-gray-100 hover:bg-gray-200 rounded-lg transition-colors flex items-center gap-1 text-sm font-medium">
+                className="px-4 py-2 bg-gray-100 dark:bg-gray-800 hover:bg-gray-200 dark:hover:bg-gray-700 text-gray-900 dark:text-white rounded-lg transition-colors flex items-center gap-1 text-sm font-medium">
                 <Plus size={16} /> Ajouter
               </button>
             </div>
@@ -200,37 +200,37 @@ export default function ProductEditForm({ product, categories, locale }: Product
         {/* Sidebar */}
         <div className="space-y-6">
           {/* Pricing */}
-          <div className="bg-white rounded-xl shadow-sm border border-gray-100 p-6">
+          <div className="bg-white dark:bg-gray-900 rounded-xl shadow-sm border border-gray-100 dark:border-gray-800 p-6">
             <h2 className="text-lg font-bold mb-4">Prix & Stock</h2>
             <div className="space-y-4">
               <div>
-                <label className="block text-sm font-medium text-gray-700 mb-1">Prix (TND)</label>
+                <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">Prix (TND)</label>
                 <input type="number" step="0.01" value={formData.price}
                   onChange={(e) => setFormData({ ...formData, price: e.target.value })}
-                  className="w-full border border-gray-300 rounded-lg px-4 py-2.5 focus:ring-2 focus:ring-[var(--color-brand-blue)] focus:border-transparent outline-none" />
+                  className="w-full border border-gray-300 dark:border-gray-700 bg-white dark:bg-gray-800 text-gray-900 dark:text-white rounded-lg px-4 py-2.5 focus:ring-2 focus:ring-[var(--color-brand-blue)] focus:border-transparent outline-none" />
               </div>
               <div>
-                <label className="block text-sm font-medium text-gray-700 mb-1">Ancien prix (TND)</label>
+                <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">Ancien prix (TND)</label>
                 <input type="number" step="0.01" value={formData.comparePrice}
                   onChange={(e) => setFormData({ ...formData, comparePrice: e.target.value })}
                   placeholder="Optionnel"
-                  className="w-full border border-gray-300 rounded-lg px-4 py-2.5 focus:ring-2 focus:ring-[var(--color-brand-blue)] focus:border-transparent outline-none" />
+                  className="w-full border border-gray-300 dark:border-gray-700 bg-white dark:bg-gray-800 text-gray-900 dark:text-white rounded-lg px-4 py-2.5 focus:ring-2 focus:ring-[var(--color-brand-blue)] focus:border-transparent outline-none" />
               </div>
               <div>
-                <label className="block text-sm font-medium text-gray-700 mb-1">Stock</label>
+                <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">Stock</label>
                 <input type="number" value={formData.stock}
                   onChange={(e) => setFormData({ ...formData, stock: e.target.value })}
-                  className="w-full border border-gray-300 rounded-lg px-4 py-2.5 focus:ring-2 focus:ring-[var(--color-brand-blue)] focus:border-transparent outline-none" />
+                  className="w-full border border-gray-300 dark:border-gray-700 bg-white dark:bg-gray-800 text-gray-900 dark:text-white rounded-lg px-4 py-2.5 focus:ring-2 focus:ring-[var(--color-brand-blue)] focus:border-transparent outline-none" />
               </div>
             </div>
           </div>
 
           {/* Category */}
-          <div className="bg-white rounded-xl shadow-sm border border-gray-100 p-6">
+          <div className="bg-white dark:bg-gray-900 rounded-xl shadow-sm border border-gray-100 dark:border-gray-800 p-6">
             <h2 className="text-lg font-bold mb-4">Catégorie</h2>
             <select value={formData.categoryId}
               onChange={(e) => setFormData({ ...formData, categoryId: e.target.value })}
-              className="w-full border border-gray-300 rounded-lg px-4 py-2.5 focus:ring-2 focus:ring-[var(--color-brand-blue)] focus:border-transparent outline-none">
+              className="w-full border border-gray-300 dark:border-gray-700 bg-white dark:bg-gray-800 text-gray-900 dark:text-white rounded-lg px-4 py-2.5 focus:ring-2 focus:ring-[var(--color-brand-blue)] focus:border-transparent outline-none">
               {categories.map((cat: any) => (
                 <option key={cat.id} value={cat.id}>{cat.name?.fr || cat.slug}</option>
               ))}
@@ -238,20 +238,20 @@ export default function ProductEditForm({ product, categories, locale }: Product
           </div>
 
           {/* Flags */}
-          <div className="bg-white rounded-xl shadow-sm border border-gray-100 p-6">
+          <div className="bg-white dark:bg-gray-900 rounded-xl shadow-sm border border-gray-100 dark:border-gray-800 p-6">
             <h2 className="text-lg font-bold mb-4">Visibilité</h2>
             <div className="space-y-3">
               <label className="flex items-center gap-3 cursor-pointer">
                 <input type="checkbox" checked={formData.featured}
                   onChange={(e) => setFormData({ ...formData, featured: e.target.checked })}
                   className="w-4 h-4 text-[var(--color-brand-blue)] rounded" />
-                <span className="text-sm font-medium text-gray-700">Produit en vedette</span>
+                <span className="text-sm font-medium text-gray-700 dark:text-gray-300">Produit en vedette</span>
               </label>
               <label className="flex items-center gap-3 cursor-pointer">
                 <input type="checkbox" checked={formData.bestSeller}
                   onChange={(e) => setFormData({ ...formData, bestSeller: e.target.checked })}
                   className="w-4 h-4 text-[var(--color-brand-blue)] rounded" />
-                <span className="text-sm font-medium text-gray-700">Best-seller</span>
+                <span className="text-sm font-medium text-gray-700 dark:text-gray-300">Best-seller</span>
               </label>
             </div>
           </div>
