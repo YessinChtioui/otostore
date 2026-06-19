@@ -6,6 +6,8 @@ import { formatPrice } from '@/lib/utils';
 import { Truck, Shield, RefreshCw } from 'lucide-react';
 import ProductActions from '@/components/product/ProductActions';
 import ProductGallery from '@/components/product/ProductGallery';
+import ProductReviews from '@/components/product/ProductReviews';
+import { auth } from '@/lib/auth';
 
 export default async function ProductPage({
   params,
@@ -13,19 +15,24 @@ export default async function ProductPage({
   params: Promise<{ slug: string; locale: string }>
 }) {
   const { slug, locale } = await params;
+  const session = await auth();
 
   let product;
   try {
     product = await prisma.product.findUnique({
       where: { slug },
-      include: { category: true, reviews: true },
+      include: { 
+        category: true, 
+        reviews: { include: { user: true }, orderBy: { createdAt: 'desc' } } 
+      },
     });
   } catch (e) {
     console.log("Database connection failed. Using mock data.");
     product = {
       id: '1', slug, name: { fr: 'Produit Mock' }, description: { fr: 'Description mock' },
       price: 50, images: ['https://res.cloudinary.com/demo/image/upload/v1689255734/cld-sample-5.jpg'], stock: 10,
-      category: { name: { fr: 'Mock Cat' }, slug: 'mock' }
+      category: { name: { fr: 'Mock Cat' }, slug: 'mock' },
+      reviews: [],
     } as any;
   }
 
@@ -39,7 +46,7 @@ export default async function ProductPage({
 
   const avgRating = product.reviews?.length
     ? (product.reviews.reduce((sum: number, r: any) => sum + r.rating, 0) / product.reviews.length).toFixed(1)
-    : '4.8';
+    : '0.0';
   const reviewCount = product.reviews?.length || 0;
 
   return (
@@ -136,6 +143,13 @@ export default async function ProductPage({
           </div>
         </div>
       </div>
+      
+      {/* Reviews Section */}
+      <ProductReviews 
+        productId={product.id} 
+        initialReviews={product.reviews || []} 
+        session={session} 
+      />
     </main>
   );
 }

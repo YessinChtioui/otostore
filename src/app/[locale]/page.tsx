@@ -3,12 +3,14 @@ import { Link } from '@/i18n/routing';
 import HomeCategories from '@/components/home/HomeCategories';
 import FeaturedProducts from '@/components/home/FeaturedProducts';
 import BestSellers from '@/components/home/BestSellers';
-import CustomerReviews from '@/components/home/CustomerReviews';
+import StoreReviews from '@/components/home/StoreReviews';
 import Newsletter from '@/components/home/Newsletter';
 import prisma from '@/lib/prisma';
+import { auth } from '@/lib/auth';
 
 export default async function HomePage({ params }: { params: Promise<{ locale: string }> }) {
   const { locale } = await params;
+  const session = await auth();
   
   // Fetch real products from DB
   const [featured, bestSellers] = await Promise.all([
@@ -78,7 +80,7 @@ export default async function HomePage({ params }: { params: Promise<{ locale: s
       <HomeCategories />
       <BestSellers products={finalBestSellers} locale={locale} />
       <FeaturedProducts products={finalFeatured} locale={locale} />
-      <CustomerReviews />
+      <StoreReviews session={session} />
       <Newsletter />
     </main>
   );
