@@ -65,28 +65,28 @@ export default async function AdminDashboard({ params }: { params: Promise<{ loc
         </div>
       </div>
 
-      <div className="flex">
-        {/* Admin Sidebar */}
-        <aside className="w-64 bg-white dark:bg-gray-900 border-r border-gray-200 dark:border-gray-800 min-h-[calc(100vh-73px)] hidden md:block transition-colors">
-          <nav className="p-4 flex flex-col gap-1">
-            <Link href="/admin" className="flex items-center gap-3 px-4 py-3 bg-blue-50 dark:bg-blue-900/20 text-[var(--color-brand-blue)] font-medium rounded-lg transition-colors">
+      <div className="flex flex-col md:flex-row">
+        {/* Admin Sidebar / Mobile Nav */}
+        <aside className="w-full md:w-64 bg-white dark:bg-gray-900 border-b md:border-b-0 md:border-r border-gray-200 dark:border-gray-800 md:min-h-[calc(100vh-73px)] transition-colors">
+          <nav className="p-4 flex flex-row md:flex-col gap-2 overflow-x-auto">
+            <Link href="/admin" className="flex items-center gap-2 md:gap-3 px-4 py-2 md:py-3 bg-blue-50 dark:bg-blue-900/20 text-[var(--color-brand-blue)] font-medium rounded-lg transition-colors whitespace-nowrap">
               Tableau de bord
             </Link>
-            <Link href="/admin/orders" className="flex items-center gap-3 px-4 py-3 text-gray-600 dark:text-gray-300 hover:bg-gray-50 dark:hover:bg-gray-800 rounded-lg transition-colors">
-              <Package size={18} /> Commandes
+            <Link href="/admin/orders" className="flex items-center gap-2 md:gap-3 px-4 py-2 md:py-3 text-gray-600 dark:text-gray-300 hover:bg-gray-50 dark:hover:bg-gray-800 rounded-lg transition-colors whitespace-nowrap">
+              <Package size={18} className="shrink-0" /> Commandes
             </Link>
-            <Link href="/admin/products" className="flex items-center gap-3 px-4 py-3 text-gray-600 dark:text-gray-300 hover:bg-gray-50 dark:hover:bg-gray-800 rounded-lg transition-colors">
-              <ShoppingBag size={18} /> Produits
+            <Link href="/admin/products" className="flex items-center gap-2 md:gap-3 px-4 py-2 md:py-3 text-gray-600 dark:text-gray-300 hover:bg-gray-50 dark:hover:bg-gray-800 rounded-lg transition-colors whitespace-nowrap">
+              <ShoppingBag size={18} className="shrink-0" /> Produits
             </Link>
-            <Link href="/admin/customers" className="flex items-center gap-3 px-4 py-3 text-gray-600 dark:text-gray-300 hover:bg-gray-50 dark:hover:bg-gray-800 rounded-lg transition-colors">
-              <Users size={18} /> Clients
+            <Link href="/admin/customers" className="flex items-center gap-2 md:gap-3 px-4 py-2 md:py-3 text-gray-600 dark:text-gray-300 hover:bg-gray-50 dark:hover:bg-gray-800 rounded-lg transition-colors whitespace-nowrap">
+              <Users size={18} className="shrink-0" /> Clients
             </Link>
           </nav>
         </aside>
 
         {/* Dashboard Content */}
-        <div className="flex-1 p-6 md:p-8">
-          <h2 className="text-2xl font-bold mb-6 dark:text-white">Aperçu</h2>
+        <div className="flex-1 p-4 md:p-8 min-w-0">
+          <h2 className="text-xl md:text-2xl font-bold mb-6 dark:text-white">Aperçu</h2>
           
           {/* KPI Cards */}
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-8">
@@ -140,7 +140,7 @@ export default async function AdminDashboard({ params }: { params: Promise<{ loc
               </Link>
             </div>
             <div className="overflow-x-auto">
-              <table className="w-full text-left text-sm">
+              <table className="w-full text-left text-sm whitespace-nowrap min-w-[600px]">
                 <thead className="bg-gray-50 dark:bg-gray-800 text-gray-600 dark:text-gray-300 transition-colors">
                   <tr>
                     <th className="p-4 font-medium">Commande</th>

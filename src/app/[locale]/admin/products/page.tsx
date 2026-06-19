@@ -34,7 +34,7 @@ export default async function AdminProductsPage({ params }: { params: Promise<{ 
 
       <div className="bg-white rounded-xl shadow-sm border border-gray-100 overflow-hidden">
         <div className="overflow-x-auto">
-          <table className="w-full text-left text-sm">
+          <table className="w-full text-left text-sm whitespace-nowrap min-w-[800px]">
             <thead className="bg-gray-50 text-gray-600">
               <tr>
                 <th className="p-4 font-medium">Image</th>
