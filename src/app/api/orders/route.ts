@@ -1,6 +1,7 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { auth } from '@/lib/auth';
 import prisma from '@/lib/prisma';
+import { sendEmail } from '@/lib/email';
 
 export async function POST(req: NextRequest) {
   const session = await auth();
@@ -41,6 +42,33 @@ export async function POST(req: NextRequest) {
         where: { id: item.productId },
         data: { stock: { decrement: item.quantity } },
       });
+    }
+
+    // Send Email Notifications
+    const adminEmail = process.env.ADMIN_EMAIL || 'admin@otostore.tn';
+    const customerEmail = deliveryInfo.email;
+
+    // To Admin
+    await sendEmail(
+      adminEmail,
+      `Nouvelle commande ${order.orderNumber}`,
+      `<p>Vous avez reçu une nouvelle commande d'un montant de ${total} TND.</p>
+       <p>Client: ${deliveryInfo.firstName} ${deliveryInfo.lastName}</p>
+       <p>Téléphone: ${deliveryInfo.phone}</p>
+       <p><a href="${process.env.NEXT_PUBLIC_APP_URL}/admin/orders/${order.id}">Voir la commande</a></p>`
+    );
+
+    // To Customer (if email provided)
+    if (customerEmail) {
+      await sendEmail(
+        customerEmail,
+        `Confirmation de votre commande ${order.orderNumber}`,
+        `<p>Bonjour ${deliveryInfo.firstName},</p>
+         <p>Nous avons bien reçu votre commande d'un montant de ${total} TND.</p>
+         <p>Elle est en cours de traitement. Vous serez contacté(e) par téléphone pour la livraison.</p>
+         <br/>
+         <p>Merci pour votre confiance !<br/>L'équipe OTO STORE</p>`
+      );
     }
 
     return NextResponse.json({ orderNumber: order.orderNumber, orderId: order.id }, { status: 201 });
