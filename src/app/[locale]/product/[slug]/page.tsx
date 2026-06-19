@@ -98,7 +98,7 @@ export default async function ProductPage({
             </div>
             <span className={product.stock > 0 ? "text-green-600 text-sm font-medium flex items-center gap-1" : "text-red-500 text-sm font-medium"}>
               {product.stock > 0 ? (
-                <><span className="w-2 h-2 rounded-full bg-green-500 inline-block"></span> En stock ({product.stock})</>
+                <><span className="w-2 h-2 rounded-full bg-green-500 inline-block"></span> En stock</>
               ) : 'Rupture de stock'}
             </span>
           </div>
