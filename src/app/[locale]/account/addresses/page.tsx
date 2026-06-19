@@ -18,13 +18,13 @@ export default async function AccountAddressesPage({ params }: { params: Promise
   });
 
   return (
-    <main className="bg-gray-50 py-12 min-h-screen">
+    <main className="bg-gray-50 dark:bg-gray-950 py-12 min-h-screen transition-colors">
       <div className="container-custom">
         <div className="flex items-center gap-4 mb-8">
-          <Link href="/account" className="p-2 hover:bg-gray-200 rounded-full transition-colors">
+          <Link href="/account" className="p-2 hover:bg-gray-200 dark:hover:bg-gray-800 rounded-full transition-colors dark:text-white">
             <ArrowLeft size={24} />
           </Link>
-          <h1 className="text-3xl font-bold">Mes Adresses</h1>
+          <h1 className="text-3xl font-bold dark:text-white">Mes Adresses</h1>
         </div>
 
         <AddressManager initialAddresses={addresses} />

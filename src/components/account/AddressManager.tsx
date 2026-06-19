@@ -79,34 +79,34 @@ export default function AddressManager({ initialAddresses }: { initialAddresses:
     <div>
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
         {addresses.map((addr) => (
-          <div key={addr.id} className="bg-white rounded-xl shadow-sm border border-gray-100 p-6 relative group">
+          <div key={addr.id} className="bg-white dark:bg-gray-900 rounded-xl shadow-sm border border-gray-100 dark:border-gray-800 p-6 relative group transition-colors">
             {addr.isDefault && (
               <span className="absolute top-4 right-4 bg-[var(--color-brand-blue)] text-white text-xs font-semibold px-2 py-0.5 rounded-full">
                 Par défaut
               </span>
             )}
             <button onClick={() => handleDelete(addr.id)}
-              className="absolute top-4 right-4 w-8 h-8 rounded-full bg-red-50 text-red-500 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity hover:bg-red-100"
+              className="absolute top-4 right-4 w-8 h-8 rounded-full bg-red-50 dark:bg-red-900/30 text-red-500 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity hover:bg-red-100 dark:hover:bg-red-900/50"
               style={addr.isDefault ? { right: '5.5rem' } : {}}>
               <Trash2 size={14} />
             </button>
             <div className="flex items-start gap-3 mb-4">
-              <div className="w-10 h-10 rounded-full bg-blue-50 flex items-center justify-center text-[var(--color-brand-blue)] flex-shrink-0">
+              <div className="w-10 h-10 rounded-full bg-blue-50 dark:bg-blue-900/20 flex items-center justify-center text-[var(--color-brand-blue)] flex-shrink-0">
                 <MapPin size={18} />
               </div>
               <div>
-                <p className="font-medium text-gray-900">{addr.governorate}</p>
-                <p className="text-sm text-gray-500">{addr.city}</p>
+                <p className="font-medium text-gray-900 dark:text-white">{addr.governorate}</p>
+                <p className="text-sm text-gray-500 dark:text-gray-400">{addr.city}</p>
               </div>
             </div>
-            <p className="text-sm text-gray-600 mb-1">{addr.address}</p>
-            <p className="text-sm text-gray-400">{addr.postalCode}</p>
+            <p className="text-sm text-gray-600 dark:text-gray-300 mb-1">{addr.address}</p>
+            <p className="text-sm text-gray-400 dark:text-gray-500">{addr.postalCode}</p>
           </div>
         ))}
 
         {/* Add new address card */}
         <button onClick={() => setShowForm(true)}
-          className="bg-white rounded-xl shadow-sm border-2 border-dashed border-gray-200 p-6 flex flex-col items-center justify-center text-gray-400 hover:border-[var(--color-brand-blue)] hover:text-[var(--color-brand-blue)] transition-colors cursor-pointer min-h-[180px]">
+          className="bg-white dark:bg-gray-900 rounded-xl shadow-sm border-2 border-dashed border-gray-200 dark:border-gray-700 p-6 flex flex-col items-center justify-center text-gray-400 dark:text-gray-500 hover:border-[var(--color-brand-blue)] hover:text-[var(--color-brand-blue)] transition-colors cursor-pointer min-h-[180px]">
           <Plus size={32} className="mb-2" />
           <p className="font-medium">Ajouter une adresse</p>
         </button>
@@ -115,49 +115,49 @@ export default function AddressManager({ initialAddresses }: { initialAddresses:
       {/* Add Address Modal */}
       {showForm && (
         <div className="fixed inset-0 bg-black/50 flex items-center justify-center z-50 p-4">
-          <div className="bg-white rounded-2xl shadow-xl w-full max-w-lg">
-            <div className="flex items-center justify-between p-6 border-b border-gray-100">
-              <h2 className="text-xl font-bold">Nouvelle adresse</h2>
-              <button onClick={() => setShowForm(false)} className="p-2 hover:bg-gray-100 rounded-full transition-colors">
+          <div className="bg-white dark:bg-gray-900 rounded-2xl shadow-xl w-full max-w-lg transition-colors">
+            <div className="flex items-center justify-between p-6 border-b border-gray-100 dark:border-gray-800">
+              <h2 className="text-xl font-bold dark:text-white">Nouvelle adresse</h2>
+              <button onClick={() => setShowForm(false)} className="p-2 hover:bg-gray-100 dark:hover:bg-gray-800 rounded-full transition-colors dark:text-gray-400">
                 <X size={20} />
               </button>
             </div>
             <form onSubmit={handleSubmit} className="p-6 space-y-4">
               <div>
-                <label className="block text-sm font-medium text-gray-700 mb-1">Gouvernorat</label>
+                <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">Gouvernorat</label>
                 <select value={form.governorate}
                   onChange={(e) => setForm({ ...form, governorate: e.target.value })}
-                  className="w-full border border-gray-300 rounded-lg px-4 py-2.5 focus:ring-2 focus:ring-[var(--color-brand-blue)] focus:border-transparent outline-none">
+                  className="w-full border border-gray-300 dark:border-gray-700 bg-white dark:bg-gray-800 text-gray-900 dark:text-white rounded-lg px-4 py-2.5 focus:ring-2 focus:ring-[var(--color-brand-blue)] focus:border-transparent outline-none transition-colors">
                   {GOVERNORATES.map((g) => <option key={g} value={g}>{g}</option>)}
                 </select>
               </div>
               <div>
-                <label className="block text-sm font-medium text-gray-700 mb-1">Ville / Délégation</label>
+                <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">Ville / Délégation</label>
                 <input type="text" value={form.city} placeholder="Ex: La Marsa"
                   onChange={(e) => setForm({ ...form, city: e.target.value })}
-                  className="w-full border border-gray-300 rounded-lg px-4 py-2.5 focus:ring-2 focus:ring-[var(--color-brand-blue)] focus:border-transparent outline-none" />
+                  className="w-full border border-gray-300 dark:border-gray-700 bg-white dark:bg-gray-800 text-gray-900 dark:text-white rounded-lg px-4 py-2.5 focus:ring-2 focus:ring-[var(--color-brand-blue)] focus:border-transparent outline-none transition-colors placeholder:text-gray-400 dark:placeholder:text-gray-500" />
               </div>
               <div>
-                <label className="block text-sm font-medium text-gray-700 mb-1">Adresse complète</label>
+                <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">Adresse complète</label>
                 <textarea value={form.address} rows={2} placeholder="Rue, numéro, immeuble, étage..."
                   onChange={(e) => setForm({ ...form, address: e.target.value })}
-                  className="w-full border border-gray-300 rounded-lg px-4 py-2.5 focus:ring-2 focus:ring-[var(--color-brand-blue)] focus:border-transparent outline-none resize-none" />
+                  className="w-full border border-gray-300 dark:border-gray-700 bg-white dark:bg-gray-800 text-gray-900 dark:text-white rounded-lg px-4 py-2.5 focus:ring-2 focus:ring-[var(--color-brand-blue)] focus:border-transparent outline-none resize-none transition-colors placeholder:text-gray-400 dark:placeholder:text-gray-500" />
               </div>
               <div>
-                <label className="block text-sm font-medium text-gray-700 mb-1">Code postal</label>
+                <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">Code postal</label>
                 <input type="text" value={form.postalCode} placeholder="Ex: 2078"
                   onChange={(e) => setForm({ ...form, postalCode: e.target.value })}
-                  className="w-full border border-gray-300 rounded-lg px-4 py-2.5 focus:ring-2 focus:ring-[var(--color-brand-blue)] focus:border-transparent outline-none" />
+                  className="w-full border border-gray-300 dark:border-gray-700 bg-white dark:bg-gray-800 text-gray-900 dark:text-white rounded-lg px-4 py-2.5 focus:ring-2 focus:ring-[var(--color-brand-blue)] focus:border-transparent outline-none transition-colors placeholder:text-gray-400 dark:placeholder:text-gray-500" />
               </div>
               <label className="flex items-center gap-3 cursor-pointer">
                 <input type="checkbox" checked={form.isDefault}
                   onChange={(e) => setForm({ ...form, isDefault: e.target.checked })}
                   className="w-4 h-4 rounded" />
-                <span className="text-sm text-gray-700">Définir comme adresse par défaut</span>
+                <span className="text-sm text-gray-700 dark:text-gray-300">Définir comme adresse par défaut</span>
               </label>
               <div className="flex gap-3 pt-2">
                 <button type="button" onClick={() => setShowForm(false)}
-                  className="flex-1 px-4 py-2.5 border border-gray-300 rounded-lg font-medium text-gray-700 hover:bg-gray-50 transition-colors">
+                  className="flex-1 px-4 py-2.5 border border-gray-300 dark:border-gray-700 rounded-lg font-medium text-gray-700 dark:text-gray-300 hover:bg-gray-50 dark:hover:bg-gray-800 transition-colors">
                   Annuler
                 </button>
                 <button type="submit" disabled={saving}

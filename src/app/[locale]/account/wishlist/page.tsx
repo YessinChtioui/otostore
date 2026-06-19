@@ -28,15 +28,15 @@ export default async function AccountWishlistPage({ params }: { params: Promise<
   }
 
   return (
-    <main className="bg-gray-50 py-12 min-h-screen">
+    <main className="bg-gray-50 dark:bg-gray-950 py-12 min-h-screen transition-colors">
       <div className="container-custom">
         <div className="flex items-center gap-4 mb-8">
-          <Link href="/account" className="p-2 hover:bg-gray-200 rounded-full transition-colors">
+          <Link href="/account" className="p-2 hover:bg-gray-200 dark:hover:bg-gray-800 rounded-full transition-colors dark:text-white">
             <ArrowLeft size={24} />
           </Link>
-          <h1 className="text-3xl font-bold">Mes Favoris</h1>
+          <h1 className="text-3xl font-bold dark:text-white">Mes Favoris</h1>
           {wishlistProducts.length > 0 && (
-            <span className="bg-gray-100 text-gray-700 px-3 py-1 rounded-full text-sm font-medium">
+            <span className="bg-gray-100 dark:bg-gray-800 text-gray-700 dark:text-gray-300 px-3 py-1 rounded-full text-sm font-medium">
               {wishlistProducts.length} produit{wishlistProducts.length !== 1 ? 's' : ''}
             </span>
           )}
@@ -45,8 +45,8 @@ export default async function AccountWishlistPage({ params }: { params: Promise<
         {wishlistProducts.length > 0 ? (
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
             {wishlistProducts.map((product: any) => (
-              <div key={product.id} className="bg-white rounded-xl shadow-sm border border-gray-100 overflow-hidden group hover:shadow-md transition-shadow">
-                <div className="relative aspect-square bg-gray-100">
+              <div key={product.id} className="bg-white dark:bg-gray-900 rounded-xl shadow-sm border border-gray-100 dark:border-gray-800 overflow-hidden group hover:shadow-md transition-all">
+                <div className="relative aspect-square bg-gray-100 dark:bg-gray-800">
                   {product.images?.[0] ? (
                     <Image
                       src={product.images[0]}
@@ -56,17 +56,17 @@ export default async function AccountWishlistPage({ params }: { params: Promise<
                       sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 25vw"
                     />
                   ) : (
-                    <div className="w-full h-full flex items-center justify-center text-gray-300">
+                    <div className="w-full h-full flex items-center justify-center text-gray-300 dark:text-gray-600">
                       <ShoppingCart size={32} />
                     </div>
                   )}
-                  <button className="absolute top-3 right-3 w-9 h-9 bg-white rounded-full flex items-center justify-center shadow-sm text-red-500 hover:bg-red-50 transition-colors">
+                  <button className="absolute top-3 right-3 w-9 h-9 bg-white dark:bg-gray-800 rounded-full flex items-center justify-center shadow-sm text-red-500 hover:bg-red-50 dark:hover:bg-red-900/30 transition-colors">
                     <Heart size={18} fill="currentColor" />
                   </button>
                 </div>
                 <div className="p-4">
                   <Link href={`/product/${product.slug}`}>
-                    <h3 className="font-medium text-gray-900 mb-2 hover:text-[var(--color-brand-blue)] transition-colors line-clamp-2">
+                    <h3 className="font-medium text-gray-900 dark:text-white mb-2 hover:text-[var(--color-brand-blue)] transition-colors line-clamp-2">
                       {product.name?.fr || 'Produit'}
                     </h3>
                   </Link>
@@ -85,10 +85,10 @@ export default async function AccountWishlistPage({ params }: { params: Promise<
             ))}
           </div>
         ) : (
-          <div className="bg-white rounded-xl shadow-sm border border-gray-100 p-12 text-center">
-            <Heart size={64} className="mx-auto text-gray-300 mb-4" />
-            <h2 className="text-xl font-bold mb-2">Votre liste de favoris est vide</h2>
-            <p className="text-gray-500 mb-6">Parcourez nos produits et ajoutez vos favoris ici.</p>
+          <div className="bg-white dark:bg-gray-900 rounded-xl shadow-sm border border-gray-100 dark:border-gray-800 p-12 text-center transition-colors">
+            <Heart size={64} className="mx-auto text-gray-300 dark:text-gray-600 mb-4" />
+            <h2 className="text-xl font-bold mb-2 dark:text-white">Votre liste de favoris est vide</h2>
+            <p className="text-gray-500 dark:text-gray-400 mb-6">Parcourez nos produits et ajoutez vos favoris ici.</p>
             <Link href="/shop" className="btn-primary">
               Découvrir nos produits
             </Link>

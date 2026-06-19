@@ -95,30 +95,30 @@ export default function CheckoutPage() {
               
               <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
                 <div>
-                  <label className="block text-sm font-medium text-gray-700 mb-2">{t('fullName')} *</label>
+                  <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">{t('fullName')} *</label>
                   <Input name="fullName" value={formData.fullName} onChange={handleInputChange} required />
                 </div>
                 <div>
-                  <label className="block text-sm font-medium text-gray-700 mb-2">{t('phone')} *</label>
+                  <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">{t('phone')} *</label>
                   <Input name="phone" type="tel" value={formData.phone} onChange={handleInputChange} required />
                 </div>
                 <div className="md:col-span-2">
-                  <label className="block text-sm font-medium text-gray-700 mb-2">{t('email')} (pour le suivi)</label>
+                  <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">{t('email')} (pour le suivi)</label>
                   <Input name="email" type="email" value={formData.email} onChange={handleInputChange} />
                 </div>
               </div>
 
-              <h3 className="font-semibold text-lg mb-4 mt-8">Adresse de livraison</h3>
+              <h3 className="font-semibold text-lg mb-4 mt-8 dark:text-white">Adresse de livraison</h3>
               
               <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
                 <div>
-                  <label className="block text-sm font-medium text-gray-700 mb-2">{t('governorate')} *</label>
+                  <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">{t('governorate')} *</label>
                   <select 
                     name="governorate" 
                     value={formData.governorate} 
                     onChange={handleInputChange} 
                     required
-                    className="flex h-11 w-full rounded-md border border-gray-300 bg-white px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-[var(--color-brand-blue)] focus:border-transparent"
+                    className="flex h-11 w-full rounded-md border border-gray-300 dark:border-gray-700 bg-white dark:bg-gray-800 text-gray-900 dark:text-white px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-[var(--color-brand-blue)] focus:border-transparent transition-colors"
                   >
                     <option value="">Sélectionnez un gouvernorat</option>
                     {governorates.map(gov => (
