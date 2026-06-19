@@ -53,7 +53,7 @@ export async function POST(req: NextRequest) {
       adminEmail,
       `Nouvelle commande ${order.orderNumber}`,
       `<p>Vous avez reçu une nouvelle commande d'un montant de ${total} TND.</p>
-       <p>Client: ${deliveryInfo.firstName} ${deliveryInfo.lastName}</p>
+       <p>Client: ${deliveryInfo.fullName}</p>
        <p>Téléphone: ${deliveryInfo.phone}</p>
        <p><a href="${process.env.NEXT_PUBLIC_APP_URL}/admin/orders/${order.id}">Voir la commande</a></p>`
     );
@@ -63,7 +63,7 @@ export async function POST(req: NextRequest) {
       await sendEmail(
         customerEmail,
         `Confirmation de votre commande ${order.orderNumber}`,
-        `<p>Bonjour ${deliveryInfo.firstName},</p>
+        `<p>Bonjour ${deliveryInfo.fullName},</p>
          <p>Nous avons bien reçu votre commande d'un montant de ${total} TND.</p>
          <p>Elle est en cours de traitement. Vous serez contacté(e) par téléphone pour la livraison.</p>
          <br/>

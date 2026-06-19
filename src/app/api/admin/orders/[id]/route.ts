@@ -1,6 +1,7 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { auth } from '@/lib/auth';
 import prisma from '@/lib/prisma';
+import { sendEmail } from '@/lib/email';
 
 export async function PATCH(req: NextRequest, { params }: { params: Promise<{ id: string }> }) {
   const session = await auth();
@@ -20,6 +21,32 @@ export async function PATCH(req: NextRequest, { params }: { params: Promise<{ id
       where: { id },
       data: { status: body.status },
     });
+
+    const deliveryInfo = order.deliveryInfo as any;
+    const customerEmail = deliveryInfo?.email;
+
+    if (customerEmail) {
+      const statusMap: Record<string, string> = {
+        PENDING: 'En attente',
+        CONFIRMED: 'Confirmée',
+        PREPARING: 'En cours de préparation',
+        OUT_FOR_DELIVERY: 'En cours de livraison',
+        DELIVERED: 'Livrée',
+        CANCELLED: 'Annulée',
+      };
+
+      const readableStatus = statusMap[order.status] || order.status;
+
+      await sendEmail(
+        customerEmail,
+        `Mise à jour de votre commande ${order.orderNumber}`,
+        `<p>Bonjour ${deliveryInfo.fullName || ''},</p>
+         <p>Le statut de votre commande <strong>${order.orderNumber}</strong> a été mis à jour.</p>
+         <p>Nouveau statut : <strong>${readableStatus}</strong></p>
+         <br/>
+         <p>Merci pour votre confiance !<br/>L'équipe OTO STORE</p>`
+      );
+    }
 
     return NextResponse.json(order);
   } catch (error) {
